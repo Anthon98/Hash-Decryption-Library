@@ -9,6 +9,7 @@ logging.getLogger().setLevel(logging.INFO)
 stri = hashlib.sha256(b'6bG')  # An example string.
 pas = stri.hexdigest()
 
+
 def main() -> str:
     start = time.time()
     for digits in range(1, 6):
