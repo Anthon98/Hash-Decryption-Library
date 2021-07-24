@@ -2,15 +2,17 @@ import hashlib
 import itertools
 import string
 import time
+import logging
 
-stri = hashlib.sha256(b'6bGxL')  # An example string.
+logging.getLogger().setLevel(logging.INFO)
+
+stri = hashlib.sha256(b'6bG')  # An example string.
 pas = stri.hexdigest()
-
 
 def main() -> str:
     start = time.time()
     for digits in range(1, 6):
-        print("Trying with... %s digits." % digits)
+        logging.info("Trying with... %s digits." % digits)
         for pwd in itertools.product((
             string.ascii_lowercase+string.ascii_uppercase+string.digits)[::-1],
                 repeat=digits):
@@ -20,6 +22,8 @@ def main() -> str:
             hex_it = sha_it.hexdigest()
             if hex_it == pas:
                 end = time.time()
-                print(end - start)
+                logging.info(end - start)
                 return join_it
-print(main())
+
+if __name__ == '__main__':
+    logging.info(main())
